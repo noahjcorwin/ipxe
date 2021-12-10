@@ -13,3 +13,5 @@ drwxr-xr-x 10 root root 4096 Dec  9 16:39 elementaryos6
 drwxr-xr-x  6 root root 4096 Dec  9 22:47 endeavouros214
 drwxr-xr-x  9 root root 4096 Dec  9 21:40 popos2104
 dr-xr-xr-x 11 root root 4096 Dec  8 02:52 ud2004
+
+$
