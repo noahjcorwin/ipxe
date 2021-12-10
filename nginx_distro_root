@@ -1,0 +1,7 @@
+server {
+  listen *:8055;
+  server_name ipxe.local.lan;
+
+  root /distros;
+  autoindex on;
+}

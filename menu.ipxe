@@ -1,0 +1,72 @@
+#!ipxe
+
+:start
+menu iPXE Boot Menu
+item
+
+item elementary  Elementary OS 6
+item endeavour   Endeavour OS 21.4
+item popos       Pop!_OS 21.04
+item ud2004      Ubuntu Desktop 20.04
+item
+item shell       iPXE shell
+item reboot      Reboot
+item exit        Exit
+item
+choose --default elementary --timeout 0 target && goto ${target}
+
+:ud2004
+set server_path ud2004
+set http ${next-server}:8055
+set dist-root http://${http}/${server_path}
+kernel ${dist-root}/casper/vmlinuz
+initrd ${dist-root}/casper/initrd
+imgargs vmlinuz initrd=initrd nfsroot=${next-server}:/distros/${server_path} netboot=nfs boot=casper ip=dhcp
+boot
+
+:elementary
+set server_path elementaryos6
+set http ${next-server}:8055
+set dist-root http://${http}/${server_path}
+kernel ${dist-root}/casper/vmlinuz
+initrd ${dist-root}/casper/initrd.lz
+imgargs vmlinuz initrd=initrd.lz nfsroot=${next-server}:/distros/${server_path} netboot=nfs boot=casper ip=dhcp
+boot
+
+:popos
+set server_path popos2104
+set http ${next-server}:8055
+set dist-root http://${http}/${server_path}
+set live_media_path casper_pop-os_21.04_amd64_intel_debug_25
+kernel ${dist-root}/vmlinuz.efi
+initrd ${dist-root}/initrd.gz
+imgargs vmlinuz.efi initrd=initrd.gz nfsroot=${next-server}:/distros/${server_path} live-media-path=/${live_media_path} netboot=nfs boot=casper ip=dhcp hostname=pop-os username=pop-os noprompt  ---
+boot
+
+:endeavour
+set server_path endeavouros214
+set http ${next-server}:8055
+set dist-root http://${http}/${server_path}
+kernel ${dist-root}/vmlinuz-linux
+initrd ${dist-root}/intel-ucode.img
+initrd ${dist-root}/amd-ucode.img
+initrd ${dist-root}/initramfs-linux.img
+imgargs vmlinuz-linux initrd=intel-ucode.img initrd=amd-ucode.img initrd=initramfs-linux.img ip=dhcp archiso_nfs_srv=${next-server}:/distros/${server_path} archisobasedir=arch
+boot
+
+## Utility menu items:
+:shell
+echo Type exit to get the back to the menu
+shell
+set menu-timeout 0
+goto start
+
+:failed
+echo Booting failed, dropping to shell
+goto shell
+
+:reboot
+reboot
+
+:exit
+exit
