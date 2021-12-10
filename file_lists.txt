@@ -1,0 +1,15 @@
+$ ls -la /tftpboot/
+total 1000
+drwxr-xr-x  2 root root    4096 Dec 10 00:29 .
+drwxr-xr-x 22 root root    4096 Dec  8 01:30 ..
+-rw-r--r--  1 root root 1009664 Dec  6 19:00 ipxe.efi
+-rw-r--r--  1 root root    2369 Dec  9 23:07 menu.ipxe
+
+$ ls -la /distros/
+total 24
+drwxr-xr-x  6 root root 4096 Dec  9 22:43 .
+drwxr-xr-x 22 root root 4096 Dec  8 01:30 ..
+drwxr-xr-x 10 root root 4096 Dec  9 16:39 elementaryos6
+drwxr-xr-x  6 root root 4096 Dec  9 22:47 endeavouros214
+drwxr-xr-x  9 root root 4096 Dec  9 21:40 popos2104
+dr-xr-xr-x 11 root root 4096 Dec  8 02:52 ud2004
